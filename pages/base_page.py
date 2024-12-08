@@ -32,3 +32,14 @@ class BasePage:
     def send_key_from_keyboard(self, key):
         """Send a key from the keyboard"""
         self.browser.send_keys(key)
+
+    def get_field_text(self, locator):
+        """Get text from a field"""
+        element = self.find_element(locator)
+        return element.text
+
+    def find_elements(self, locator, timeout=10):
+        """Find elements on the page"""
+        return WebDriverWait(self.browser, timeout).until(
+            EC.presence_of_all_elements_located(locator)
+        )
