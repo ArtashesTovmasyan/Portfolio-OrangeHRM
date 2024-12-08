@@ -1,8 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
-
 ADMIN_ITEM_LOCATOR = (By.XPATH, "//a[contains(@class, 'oxd-main-menu-item')]/span[text()='Admin']")
-PIM_ITEM_LOCATOR = (By.XPATH, "//a[contains(@class, 'oxd-main-menu-item')]/span[text()='PIM']")
+PIM_ITEM_LOCATOR = (By.XPATH, "//a[@href='/web/index.php/pim/viewPimModule']")
 LEAVE_ITEM_LOCATOR = (By.XPATH, "//a[contains(@class, 'oxd-main-menu-item')]/span[text()='Leave']")
 TIME_ITEM_LOCATOR = (By.XPATH, "//a[contains(@class, 'oxd-main-menu-item')]/span[text()='Time']")
 RECRUITMENT_ITEM_LOCATOR = (By.XPATH, "//a[contains(@class, 'oxd-main-menu-item')]/span[text()='Recruitment']")

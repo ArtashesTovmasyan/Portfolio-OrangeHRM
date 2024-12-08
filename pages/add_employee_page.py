@@ -13,6 +13,10 @@ CANCEL_BUTTON = (By.XPATH, "//button[text()=' Cancel ']")
 
 SUCCESS_TOOLTIP = (By.XPATH, "//p[text()='Success']")
 
+def employee_id_generator():
+    import random
+    return random.randint(100000, 999999)
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -34,7 +38,8 @@ class AddEmployeePage(BasePage):
         self.wait.until(EC.visibility_of_element_located(LAST_NAME_FIELD))
         self.enter_text(LAST_NAME_FIELD, last_name)
 
-    def enter_employee_id(self, employee_id):
+    def enter_employee_id(self, employee_id = employee_id_generator()):
+
         self.wait.until(EC.visibility_of_element_located(EMPLOYEE_ID_FIELD))
         self.enter_text(EMPLOYEE_ID_FIELD, employee_id)
 
@@ -60,4 +65,6 @@ class AddEmployeePage(BasePage):
             return True
         except TimeoutException:
             return False
+
+
 

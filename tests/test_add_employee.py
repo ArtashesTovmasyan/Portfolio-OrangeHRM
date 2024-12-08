@@ -29,14 +29,25 @@ def test_add_employee(browser):
     with allure.step("Enter employee details"):
         add_employee_page.enter_first_name("Ben")
         add_employee_page.enter_last_name("Parker")
+        add_employee_page.enter_employee_id()
         employee_id = add_employee_page.get_employee_id()  # Employee ID for verification
     with allure.step("Submit new employee details"):
         add_employee_page.click_submit_button()
     with allure.step("Verify employee creation"):
         assert add_employee_page.is_success_tooltip_displayed(), "The employee was not added successfully"
+    with allure.step("Navigate to Employee List"):
+        pim_page.click_employee_list()
     with allure.step("Enter employee ID in search box"):
         employee_list_page.enter_employee_id(employee_id)
+        time.sleep(5)
         employee_list_page.click_search_button()
+        time.sleep(5)
     with allure.step("Check employee in Employee List"):
         pim_page.click_employee_list()
-        assert employee_list_page.is_employee_record_present(), "The employee was not added to employee list"
+        assert employee_list_page.is_employee_record_present(employee_id), "The employee was not added to employee list"
+
+
+
+
+
+
