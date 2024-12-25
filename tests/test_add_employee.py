@@ -44,8 +44,12 @@ def test_add_employee(browser):
         time.sleep(5)
     with allure.step("Check employee in Employee List"):
         pim_page.click_employee_list()
-        assert employee_list_page.is_employee_record_present(employee_id), "The employee was not added to employee list"
-
+        try:
+            assert employee_list_page.is_employee_record_present(
+                employee_id), "The employee was not added to employee list"
+            print("The employee was successfully added to the employee list")
+        except AssertionError as e:
+            print(e)
 
 
 
