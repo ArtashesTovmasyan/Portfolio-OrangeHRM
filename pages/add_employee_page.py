@@ -2,6 +2,7 @@ from selenium.common import TimeoutException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+import random
 
 FIRST_NAME_FIELD = (By.XPATH, "//input[@name='firstName']")
 MIDDLE_NAME_FIELD = (By.XPATH, "//input[@name='middleName']")
@@ -14,8 +15,10 @@ CANCEL_BUTTON = (By.XPATH, "//button[text()=' Cancel ']")
 SUCCESS_TOOLTIP = (By.XPATH, "//p[text()='Success']")
 
 def employee_id_generator():
-    import random
-    return random.randint(100000, 999999)
+
+    return random.randint(10000, 99999)
+
+RANDOM_ID = employee_id_generator()
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -38,7 +41,7 @@ class AddEmployeePage(BasePage):
         self.wait.until(EC.visibility_of_element_located(LAST_NAME_FIELD))
         self.enter_text(LAST_NAME_FIELD, last_name)
 
-    def enter_employee_id(self, employee_id = employee_id_generator()):
+    def add_employee_id(self, employee_id = RANDOM_ID):
 
         self.wait.until(EC.visibility_of_element_located(EMPLOYEE_ID_FIELD))
         self.enter_text(EMPLOYEE_ID_FIELD, employee_id)

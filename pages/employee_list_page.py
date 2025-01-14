@@ -3,6 +3,8 @@ from pages.base_page import BasePage
 
 EMPLOYEE_ID_INPUT_FIELD = (By.XPATH, "//label[text()='Employee Id']/parent::*/following-sibling::div/input")
 SEARCH_BUTTON = (By.XPATH, "//button[text()=' Search ']")
+YES_DELETE_BUTTON = (By.XPATH, "//button[text()=' Yes, Delete ']")
+DELETE_SUCCESS_MESSAGE = (By.XPATH, "//p[text()='Successfully Deleted']")
 
 RECORD_DELETE_BUTTON = (By.XPATH, "//button/i[@class='oxd-icon bi-trash']")
 def employee_recording_id(employee_id):
@@ -25,13 +27,19 @@ class EmployeeListPage(BasePage):
         employee_locator = employee_recording_id(employee_id)
         return self.is_element_present(employee_locator)
 
-    def click_delete_button(self, employee_id):
-        employee_locator = employee_recording_id(employee_id)
-        self.click_element(employee_locator)
+    def click_delete_button(self):
+
         self.click_element(RECORD_DELETE_BUTTON)
 
+    def find_employee_by_id(self, employee_id):
+        employee_locator = employee_recording_id(employee_id)
+        return self.find_element(employee_locator)
 
+    def click_yes_delete_button(self):
+        self.click_element(YES_DELETE_BUTTON)
 
+    def is_delete_success_message_present(self):
+        return self.is_element_present(DELETE_SUCCESS_MESSAGE)
 
 
 

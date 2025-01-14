@@ -23,3 +23,7 @@ def pytest_runtest_makereport(item, call):
         if 'browser' in item.fixturenames:
             driver = item.funcargs['browser']
             allure.attach(driver.get_screenshot_as_png(), name="screenshot", attachment_type=AttachmentType.PNG)
+
+@pytest.fixture(scope="session")
+def employee_id():
+    return {"id": None}
