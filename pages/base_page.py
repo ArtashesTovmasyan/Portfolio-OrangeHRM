@@ -51,3 +51,8 @@ class BasePage:
         except:
             return False
         return True
+
+    def upload_file(self, locator, file_path):
+        """Upload a file"""
+        element = self.find_element(locator)
+        element.send_keys(file_path)

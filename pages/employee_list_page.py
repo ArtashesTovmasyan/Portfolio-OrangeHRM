@@ -5,7 +5,7 @@ EMPLOYEE_ID_INPUT_FIELD = (By.XPATH, "//label[text()='Employee Id']/parent::*/fo
 SEARCH_BUTTON = (By.XPATH, "//button[text()=' Search ']")
 YES_DELETE_BUTTON = (By.XPATH, "//button[text()=' Yes, Delete ']")
 DELETE_SUCCESS_MESSAGE = (By.XPATH, "//p[text()='Successfully Deleted']")
-
+EMPLOYEE_LIST = (By.XPATH, "//a[text()='Employee List']")
 RECORD_DELETE_BUTTON = (By.XPATH, "//button/i[@class='oxd-icon bi-trash']")
 def employee_recording_id(employee_id):
     return (
@@ -16,6 +16,9 @@ def employee_recording_id(employee_id):
 class EmployeeListPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
+
+    def click_employee_list(self):
+        self.click_element(EMPLOYEE_LIST, timeout=10)
 
     def enter_employee_id(self, employee_id):
         self.enter_text(EMPLOYEE_ID_INPUT_FIELD, employee_id)
@@ -43,3 +46,6 @@ class EmployeeListPage(BasePage):
 
 
 
+    def click_on_employee(self, employee_id):
+        employee_locator = employee_recording_id(employee_id)
+        self.click_element(employee_locator)
