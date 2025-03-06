@@ -1,10 +1,10 @@
 import pytest
+import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import allure
 from allure_commons.types import AttachmentType
-
 
 @pytest.fixture
 def browser():
@@ -27,3 +27,4 @@ def pytest_runtest_makereport(item, call):
 @pytest.fixture(scope="session")
 def employee_id():
     return {"id": None}
+
