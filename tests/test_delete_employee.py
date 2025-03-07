@@ -26,10 +26,10 @@ def test_delete_employee(browser, employee_id):
         login_page.click_login_button()
     with allure.step("Navigate to PIM and initiate search for employee to delete"):
         side_bar.click_on_pim()
-    with allure.step("Enter employee ID in search box"):
+    with allure.step("find employee"):
         employee_list_page.enter_employee_id(employee_id["id"])
         employee_list_page.click_search_button()
-    with allure.step("find employee and delete"):
+    with allure.step("delete employee"):
         employee_list_page.click_delete_button()
         employee_list_page.click_yes_delete_button()
     with allure.step("Verify employee deletion"):
