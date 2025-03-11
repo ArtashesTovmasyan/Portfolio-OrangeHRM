@@ -1,5 +1,3 @@
-# pages/base_page.py
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import allure
@@ -66,10 +64,8 @@ class BasePage:
         element.send_keys(file_path)
 
     def take_full_screenshot(self, name="full_screenshot"):
-        # Устанавливаем размер окна равным полной высоте страницы
         total_height = self.browser.execute_script("return document.body.scrollHeight")
-        self.browser.set_window_size(1920, total_height)  # Ширина фиксирована, высота — полная
-        # Задержка 3 секунды перед скриншотом
+        self.browser.set_window_size(1920, total_height)
         import time
         time.sleep(3)
         screenshot = self.browser.get_screenshot_as_png()

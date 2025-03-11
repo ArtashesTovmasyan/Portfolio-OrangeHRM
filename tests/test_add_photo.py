@@ -1,22 +1,20 @@
-# test_add_photo.py
-import time
 import allure
 import pytest
 
 from pages.employee_list_page import EmployeeListPage
 from pages.login_page import LoginPage
-from pages.pim_page import PimPage
 from pages.side_bar import SideBar
 from pages.personal_details_page import PersonalDetailsPage
+
 
 @pytest.mark.order(2)
 @allure.feature("Add photo")
 @allure.story("Add photo")
 @allure.severity(allure.severity_level.NORMAL)
 def test_add_photo(browser, employee_id):
-    login_page = LoginPage(browser.browser)  # Use browser.browser for WebDriver
+    login_page = LoginPage(browser.browser)
     side_bar = SideBar(browser.browser)
-    pim_page = PimPage(browser.browser)
+
     employee_list_page = EmployeeListPage(browser.browser)
     personal_details_page = PersonalDetailsPage(browser.browser)
 
@@ -36,4 +34,3 @@ def test_add_photo(browser, employee_id):
         personal_details_page.upload_profile_picture(
             "C:/Users/atovmasyan/PycharmProjects/PortfolioProject/tests/man-with-beard-avatar-character-isolated-icon-free-vector.jpg")
         personal_details_page.click_save_button()
-    # Screenshot is taken automatically by the fixture

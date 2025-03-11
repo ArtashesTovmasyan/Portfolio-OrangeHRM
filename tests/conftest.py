@@ -3,13 +3,10 @@ import shutil
 import time
 
 import pytest
-import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-import allure
-from allure_commons.types import AttachmentType
-from pages.base_page import BasePage  # Import BasePage
+from pages.base_page import BasePage
 
 @pytest.fixture
 def browser(request):
