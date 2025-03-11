@@ -1,5 +1,6 @@
 import time
 import allure
+import pytest
 
 from pages.employee_list_page import EmployeeListPage
 from pages.pim_page import PimPage
@@ -7,7 +8,7 @@ from pages.login_page import LoginPage
 from pages.side_bar import SideBar
 from pages.add_employee_page import AddEmployeePage, employee_id_generator
 
-
+@pytest.mark.order(3)
 @allure.feature("Delete Employee")
 @allure.story("Delete Employee")
 @allure.severity(allure.severity_level.CRITICAL)

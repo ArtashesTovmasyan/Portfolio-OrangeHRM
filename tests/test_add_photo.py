@@ -1,13 +1,15 @@
 # test_add_photo.py
 import time
 import allure
+import pytest
+
 from pages.employee_list_page import EmployeeListPage
 from pages.login_page import LoginPage
 from pages.pim_page import PimPage
 from pages.side_bar import SideBar
 from pages.personal_details_page import PersonalDetailsPage
 
-
+@pytest.mark.order(2)
 @allure.feature("Add photo")
 @allure.story("Add photo")
 @allure.severity(allure.severity_level.NORMAL)

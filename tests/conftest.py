@@ -1,3 +1,5 @@
+import os
+import shutil
 import time
 
 import pytest
@@ -15,7 +17,7 @@ def browser(request):
     driver = webdriver.Chrome(service=service)
     driver.maximize_window()
     page = BasePage(driver)  # Create a BasePage instance
-    yield page # Yield the page object instead of raw driver
+    yield page
     time.sleep(5)
     # Take screenshot at the end of the test
     page.take_full_screenshot(f"End_of_{request.node.name}")
@@ -24,3 +26,10 @@ def browser(request):
 @pytest.fixture(scope="session")
 def employee_id():
     return {"id": None}
+
+
+def pytest_sessionstart(session):
+    allure_results_dir = "./allure-results"
+    if os.path.exists(allure_results_dir):
+        shutil.rmtree(allure_results_dir)
+        os.makedirs(allure_results_dir, exist_ok=True)

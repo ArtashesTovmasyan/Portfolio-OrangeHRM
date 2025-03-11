@@ -1,13 +1,15 @@
 # test_add_employee.py
 import time
 import allure
+import pytest
+
 from pages.employee_list_page import EmployeeListPage
 from pages.pim_page import PimPage
 from pages.login_page import LoginPage
 from pages.side_bar import SideBar
 from pages.add_employee_page import AddEmployeePage, employee_id_generator
 
-
+@pytest.mark.order(1)
 @allure.feature("Add Employee")
 @allure.story("Add Employee")
 @allure.severity(allure.severity_level.CRITICAL)
