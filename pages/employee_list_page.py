@@ -18,7 +18,7 @@ class EmployeeListPage(BasePage):
         super().__init__(browser)
 
     def click_employee_list(self):
-        self.click_element(EMPLOYEE_LIST, timeout=10)
+        self.click_element(EMPLOYEE_LIST)
 
     def enter_employee_id(self, employee_id):
         self.enter_text(EMPLOYEE_ID_INPUT_FIELD, employee_id)

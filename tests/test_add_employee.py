@@ -1,7 +1,6 @@
+# test_add_employee.py
 import time
 import allure
-
-
 from pages.employee_list_page import EmployeeListPage
 from pages.pim_page import PimPage
 from pages.login_page import LoginPage
@@ -9,17 +8,15 @@ from pages.side_bar import SideBar
 from pages.add_employee_page import AddEmployeePage, employee_id_generator
 
 
-
-
 @allure.feature("Add Employee")
 @allure.story("Add Employee")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_employee(browser, employee_id):
-    login_page = LoginPage(browser)
-    side_bar = SideBar(browser)
-    pim_page = PimPage(browser)
-    add_employee_page = AddEmployeePage(browser)
-    employee_list_page = EmployeeListPage(browser)
+    login_page = LoginPage(browser.browser)  # Use browser.browser for WebDriver
+    side_bar = SideBar(browser.browser)
+    pim_page = PimPage(browser.browser)
+    add_employee_page = AddEmployeePage(browser.browser)
+    employee_list_page = EmployeeListPage(browser.browser)
 
     with allure.step("Open the login page"):
         login_page.open()
@@ -43,18 +40,13 @@ def test_add_employee(browser, employee_id):
         pim_page.click_employee_list()
     with allure.step("Enter employee ID in search box"):
         employee_list_page.enter_employee_id(employee_id["id"])
-        time.sleep(5)
         employee_list_page.click_search_button()
-        time.sleep(5)
     with allure.step("Check employee in Employee List"):
         pim_page.click_employee_list()
         try:
-            assert employee_list_page.is_employee_record_present(employee_id["id"]), "The employee was not added to employee list"
+            assert employee_list_page.is_employee_record_present(
+                employee_id["id"]), "The employee was not added to employee list"
             print("The employee was successfully added to the employee list")
         except AssertionError as e:
             print(e)
-
-
-
-
-
+    # Screenshot is taken automatically by the fixture

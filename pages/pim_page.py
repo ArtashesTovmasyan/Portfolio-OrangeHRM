@@ -12,5 +12,5 @@ class PimPage(BasePage):
         self.click_element(ADD_BUTTON)
 
     def click_employee_list(self):
-        self.click_element(EMPLOYEE_LIST, timeout=10)
+        self.click_element(EMPLOYEE_LIST)
 

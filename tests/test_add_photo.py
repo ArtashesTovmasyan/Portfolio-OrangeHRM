@@ -1,7 +1,6 @@
+# test_add_photo.py
 import time
-
 import allure
-
 from pages.employee_list_page import EmployeeListPage
 from pages.login_page import LoginPage
 from pages.pim_page import PimPage
@@ -13,11 +12,11 @@ from pages.personal_details_page import PersonalDetailsPage
 @allure.story("Add photo")
 @allure.severity(allure.severity_level.NORMAL)
 def test_add_photo(browser, employee_id):
-    login_page = LoginPage(browser)
-    side_bar = SideBar(browser)
-    pim_page = PimPage(browser)
-    employee_list_page = EmployeeListPage(browser)
-    personal_details_page = PersonalDetailsPage(browser)
+    login_page = LoginPage(browser.browser)  # Use browser.browser for WebDriver
+    side_bar = SideBar(browser.browser)
+    pim_page = PimPage(browser.browser)
+    employee_list_page = EmployeeListPage(browser.browser)
+    personal_details_page = PersonalDetailsPage(browser.browser)
 
     with allure.step("login"):
         login_page.open()
@@ -31,10 +30,8 @@ def test_add_photo(browser, employee_id):
     with allure.step("redirect to personal details page"):
         employee_list_page.click_on_employee(employee_id["id"])
     with allure.step("upload photo"):
-        time.sleep(5)
         personal_details_page.click_profile_picture()
-        time.sleep(5)
-        personal_details_page.upload_profile_picture("C:/Users/atovmasyan/PycharmProjects/PortfolioProject/tests/man-with-beard-avatar-character-isolated-icon-free-vector.jpg")
+        personal_details_page.upload_profile_picture(
+            "C:/Users/atovmasyan/PycharmProjects/PortfolioProject/tests/man-with-beard-avatar-character-isolated-icon-free-vector.jpg")
         personal_details_page.click_save_button()
-        time.sleep(15)
-
+    # Screenshot is taken automatically by the fixture
