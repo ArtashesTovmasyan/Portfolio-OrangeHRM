@@ -14,8 +14,6 @@ from pages.add_employee_page import AddEmployeePage, employee_id_generator
 def test_delete_employee(browser, employee_id):
     login_page = LoginPage(browser.browser)
     side_bar = SideBar(browser.browser)
-    pim_page = PimPage(browser.browser)
-    add_employee_page = AddEmployeePage(browser.browser)
     employee_list_page = EmployeeListPage(browser.browser)
 
     with allure.step("Open the login page"):
