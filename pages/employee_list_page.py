@@ -32,7 +32,7 @@ class EmployeeListPage(BasePage):
                                "No Records Found" in driver.page_source
             )
         except TimeoutException:
-            raise Exception("❗ Search results or 'No Records Found' did not appear")
+            raise Exception("Search results or 'No Records Found' did not appear")
 
     def is_employee_record_present(self, employee_id):
         self.wait_for_search_result_or_no_records()
@@ -40,7 +40,6 @@ class EmployeeListPage(BasePage):
         return any(employee_id in row.text for row in rows)
 
     def is_employee_record_absent(self, employee_id):
-        """Удобно использовать с assert"""
         self.wait_for_search_result_or_no_records()
         rows = self.browser.find_elements(*RESULT_ROW)
         return all(employee_id not in row.text for row in rows)

@@ -77,8 +77,8 @@ def cleanup_employee(request, login):
             employee_list_page.wait_for_delete_success_message()
             employee_list_page.click_search_button()
             employee_list_page.wait_until_employee_disappears(employee_id)
-            print(f"🗑️ Deleted employee with ID: {employee_id}")
+            print(f"Deleted employee with ID: {employee_id}")
         else:
-            print(f"ℹ️ Employee ID {employee_id} not found — nothing to delete.")
+            print(f"Employee ID {employee_id} not found — nothing to delete.")
     except Exception as e:
-        print(f"❗ Cleanup failed for employee {employee_id}: {e}")
+        print(f"Cleanup failed for employee {employee_id}: {e}")

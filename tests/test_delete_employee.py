@@ -18,4 +18,4 @@ def test_delete_employee(login, create_employee):
     employee_list_page.click_delete_button()
     employee_list_page.click_yes_delete_button()
     employee_list_page.click_search_button()
-    assert employee_list_page.wait_until_employee_disappears(employee_id), f"❗ Employee {employee_id} still exists after deletion"
+    assert employee_list_page.wait_until_employee_disappears(employee_id), f"Employee {employee_id} still exists after deletion"

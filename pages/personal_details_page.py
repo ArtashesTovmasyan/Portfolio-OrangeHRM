@@ -35,12 +35,10 @@ class PersonalDetailsPage(BasePage):
         return src.startswith("data:image/")
 
     def get_preview_photo_src(self):
-        """Возвращает src центрального изображения"""
         img = self.find_element((By.XPATH, "//div[contains(@class, 'orangehrm-edit-employee-content')]//img"))
         return img.get_attribute("src")
 
     def is_preview_photo_changed(self, old_src):
-        """Проверяет, изменился ли src (то есть, была ли предпросмотрная загрузка)"""
         new_src = self.get_preview_photo_src()
         print(f"[PHOTO SRC] До: {old_src}\nПосле: {new_src}")
         return old_src != new_src

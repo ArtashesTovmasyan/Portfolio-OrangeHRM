@@ -1,0 +1,2 @@
+Created employee with ID: 047216946a
+🗑️ Deleted employee with ID: 047216946a
