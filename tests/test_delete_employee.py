@@ -1,25 +1,21 @@
 import allure
 import pytest
-
 from pages.employee_list_page import EmployeeListPage
 from pages.pim_page import PimPage
 
-@allure.feature("Delete Employee")
+@allure.feature("Employee Management")
 @allure.story("Delete Employee")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_delete_employee(browser, create_employee):
-    employee_id = create_employee  # get the employee id from the fixture
+def test_delete_employee(login, create_employee):
+    employee_id = create_employee
 
-    pim_page = PimPage(browser.browser)
-    employee_list_page = EmployeeListPage(browser.browser)
+    pim_page = PimPage(login)
+    employee_list_page = EmployeeListPage(login)
 
-    with allure.step("Navigate to PIM and initiate search for employee to delete"):
-        pim_page.click_employee_list()
-    with allure.step("find employee"):
-        employee_list_page.enter_employee_id(employee_id)
-        employee_list_page.click_search_button()
-    with allure.step("delete employee"):
-        employee_list_page.click_delete_button()
-        employee_list_page.click_yes_delete_button()
-    with allure.step("Verify employee deletion"):
-        assert employee_list_page.is_delete_success_message_present(), "The employee was not deleted successfully"
+    pim_page.click_employee_list()
+    employee_list_page.enter_employee_id(employee_id)
+    employee_list_page.click_search_button()
+    employee_list_page.click_delete_button()
+    employee_list_page.click_yes_delete_button()
+    employee_list_page.click_search_button()
+    assert employee_list_page.wait_until_employee_disappears(employee_id), f"❗ Employee {employee_id} still exists after deletion"
