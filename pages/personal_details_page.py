@@ -1,5 +1,3 @@
-# pages/personal_details_page.py
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -42,3 +40,14 @@ class PersonalDetailsPage(BasePage):
         new_src = self.get_preview_photo_src()
         print(f"[PHOTO SRC] До: {old_src}\nПосле: {new_src}")
         return old_src != new_src
+
+    def wait_until_photo_updated(self, old_src, timeout=10):
+        WebDriverWait(self.browser, timeout).until(
+            lambda driver: driver.execute_script(
+                """
+                const img = document.querySelector('img.employee-image');
+                return img && img.src && !img.src.includes(arguments[0]);
+                """, old_src
+            ),
+            message="Фото не обновилось: src остался прежним"
+        )

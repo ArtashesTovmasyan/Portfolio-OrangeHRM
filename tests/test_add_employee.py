@@ -1,7 +1,4 @@
-# tests/test_add_employee.py
-
 import allure
-import pytest
 from pages.employee_list_page import EmployeeListPage
 from pages.pim_page import PimPage
 

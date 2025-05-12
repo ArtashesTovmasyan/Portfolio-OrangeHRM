@@ -1,7 +1,3 @@
-# tests/conftest.py
-
-import os
-import shutil
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -14,6 +10,7 @@ from pages.add_employee_page import AddEmployeePage
 from pages.employee_list_page import EmployeeListPage
 from config.config import Config
 
+
 @pytest.fixture(scope="session")
 def browser():
     # Start browser and yield WebDriver instance
@@ -22,6 +19,7 @@ def browser():
     driver.maximize_window()
     yield driver
     driver.quit()
+
 
 @pytest.fixture(scope="session")
 def login(browser):
@@ -32,6 +30,7 @@ def login(browser):
     login_page.enter_password(Config.admin_password)
     login_page.click_login_button()
     yield browser
+
 
 @pytest.fixture
 def create_employee(login):
@@ -52,13 +51,14 @@ def create_employee(login):
     print("Created employee with ID:", employee_id)
     yield employee_id
 
+
 @pytest.fixture
 def cleanup_employee(request, login):
-    yield  # Выполняется ПОСЛЕ теста
+    yield
 
     employee_id = getattr(request.node, "employee_id", None)
     if not employee_id:
-        print("⚠️ No employee ID to cleanup")
+        print("No employee ID to cleanup")
         return
 
     side_bar = SideBar(login)
