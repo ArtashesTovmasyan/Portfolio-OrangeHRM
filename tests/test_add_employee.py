@@ -7,7 +7,7 @@ from pages.pim_page import PimPage
 @allure.severity(allure.severity_level.CRITICAL)
 def test_add_employee(login, create_employee, cleanup_employee, request):
     employee_id = create_employee
-    request.node.employee_id = employee_id  # передаём ID для удаления
+    request.node.employee_id = employee_id
 
     pim_page = PimPage(login)
     employee_list_page = EmployeeListPage(login)
